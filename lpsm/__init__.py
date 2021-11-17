@@ -1,6 +1,8 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
-from flask_login import login_user, logout_user
+from flask_login import LoginManager
+from flask_admin import Admin
+
 
 from lpsm.config import *
 
@@ -15,3 +17,14 @@ db.drop_all()
 db.create_all()
 
 app.config["SECRET_KEY"] = SECRET_KEY
+
+app.config["SESSION_PERMANENT"] = True
+app.config["SESSION_TYPE"] = 'filesystem'
+
+login_manager = LoginManager()
+login_manager.init_app(app)
+
+app.config['FLASK_ADMIN_SWATCH'] = 'cerulean'
+admin = Admin(app, template_mode='bootstrap3')
+
+from lpsm import routes
