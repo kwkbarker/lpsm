@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block title %}Invitation Only{% endblock %}
+
+{% block body %}
+
+<form action='secret_key' method='post'>
+    <div class='secret_div'>
+        <input type='text' placeholder="secret key" name='secret_key'>
+        <input type='submit'>
+    </div>
+</form>
+
+{% endblock %}
