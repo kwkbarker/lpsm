@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block title %}Invitation Only{% endblock %}
+
+{% block body %}
+
+<style>
+    .secret_div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10em;
+}
+
+.black {
+    background-color: black;
+    color: grey;
+}
+</style>
+<body class="black">
+    <form action='secret_key' method='post'>
+        <div class='secret_div'>
+            <input type='text' placeholder="secret key" name='secret_key'>
+            <input type='submit'>
+        </div>
+</form>
+</body>
+{% endblock %}

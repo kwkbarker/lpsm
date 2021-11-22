@@ -7,9 +7,10 @@ from flask_admin import Admin
 from lpsm.config import *
 
 
-app = Flask(__name__, static_url_path="lpsm/static")
+app = Flask(__name__, static_url_path='/lpsm/static')
 
-app.config["SQLALCHEMY_DATABASE_URI"] = F"postgresql+psycopg2://{DB_USER}:{DB_PW}@/{DB_NAME}?host={DB_IP}"
+app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///lpsm.db"
+# f"postgresql+psycopg2://{DB_USER}:{DB_PW}@/{DB_NAME}?host={DB_IP}"
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = True
 
 db = SQLAlchemy(app)

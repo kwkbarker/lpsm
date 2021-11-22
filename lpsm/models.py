@@ -1,6 +1,6 @@
 from lpsm import db, login_manager, admin
 from flask_login import UserMixin
-from flask.admin.contrib.sqla import ModelView
+from flask_admin.contrib.sqla import ModelView
 import bcrypt
 
 @login_manager.user_loader
@@ -40,10 +40,12 @@ class Listing(db.Model):
     title = db.Column(db.String(128), nullable=False)
     description = db.Column(db.String(1024), nullable=False)
     grade = db.Column(db.String(12), nullable=False)
-    image_1 = db.Column(db.string(128), nullable=False)
-    image_2 = db.Column(db.string(128), nullable=True)
-    image_3 = db.Column(db.string(128), nullable=True)
-    image_4 = db.Column(db.string(128), nullable=True)
+    image_1 = db.Column(db.String(128), nullable=False)
+    image_2 = db.Column(db.String(128), nullable=True)
+    image_3 = db.Column(db.String(128), nullable=True)
+    image_4 = db.Column(db.String(128), nullable=True)
+    active = db.Column(db.Boolean, nullable=False, default=True)
+    date = db.Column(db.DateTime, server_default=db.func.now())
     buyer = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=True)
 
     def __repr__(self):
@@ -54,7 +56,7 @@ class Comment(db.Model):
     listing = db.Column(db.Integer, db.ForeignKey('listing.id'))
     user = db.Column(db.Integer, db.ForeignKey('user.id'))
     text = db.Column(db.String(1024), nullable=False)
-    date = db.Column(db.DateTime, nullable=False)
+    date = db.Column(db.DateTime, server_default=db.func.now())
 
     def __repr__(self):
         return f"{self.user}: {self.date}"
